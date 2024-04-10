@@ -1,7 +1,10 @@
 package com.gabriel.gof.controller;
 
 import com.gabriel.gof.model.Cliente;
+import com.gabriel.gof.model.dto.AtualizarClienteDTO;
+import com.gabriel.gof.model.dto.InserirClienteDTO;
 import com.gabriel.gof.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,14 +31,16 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> inserir(@RequestBody Cliente cliente) {
-        Cliente novoCliente = clienteService.inserir(cliente);
-        return ResponseEntity.created(URI.create("localhost:8080/clientes/" + novoCliente.getId())).body(cliente);
+    public ResponseEntity<Cliente> inserir(@RequestBody @Valid InserirClienteDTO clienteDTO) {
+        Cliente novoCliente = clienteService.inserir(clienteDTO.toEntity());
+        return ResponseEntity
+                .created(URI.create("localhost:8080/clientes/" + novoCliente.getId()))
+                .body(novoCliente);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> atualizar(@PathVariable Long id, @RequestBody Cliente cliente) {
-        Cliente clienteAtualizado = clienteService.atualizar(id, cliente);
+    public ResponseEntity<Cliente> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizarClienteDTO clienteDTO) {
+        Cliente clienteAtualizado = clienteService.atualizar(id, clienteDTO.toEntity());
         return ResponseEntity.ok(clienteAtualizado);
     }
 
