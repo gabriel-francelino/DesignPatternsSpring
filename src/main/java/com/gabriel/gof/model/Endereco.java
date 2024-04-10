@@ -2,6 +2,8 @@ package com.gabriel.gof.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +24,7 @@ import lombok.NoArgsConstructor;
 public class Endereco {
 
     @Id
+    @NotNull @NotBlank
     private String cep;
     private String logradouro;
     private String complemento;

@@ -37,7 +37,8 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente inserir(Cliente cliente) {
-        atribuirCep(cliente);
+        Endereco endereco = obterEndereco(cliente.getEndereco().getCep());
+        cliente.setEndereco(endereco);
         return clienteRepository.save(cliente);
     }
 
@@ -48,7 +49,8 @@ public class ClienteServiceImpl implements ClienteService {
                 .orElseThrow(() -> new NoSuchElementException("Cliente não encontrado!"));
 
         clienteBD.setNome(cliente.getNome());
-        atribuirCep(cliente);
+        Endereco novoEndereco = obterEndereco(cliente.getEndereco().getCep());
+        clienteBD.setEndereco(novoEndereco);
 
         return clienteRepository.save(clienteBD);
     }
@@ -58,15 +60,11 @@ public class ClienteServiceImpl implements ClienteService {
         clienteRepository.deleteById(id);
     }
 
-    private void atribuirCep(Cliente cliente) {
-        String cep = cliente.getEndereco().getCep();
-
-        Endereco endereco = enderecoRepository.findById(cep)
+    private Endereco obterEndereco(String cep) {
+        return enderecoRepository.findById(cep)
                 .orElseGet(() -> {
                     Endereco novoEndereco = viaCepService.consultarCep(cep);
                     return enderecoRepository.save(novoEndereco);
                 });
-
-        cliente.setEndereco(endereco);
     }
 }
