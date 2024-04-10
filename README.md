@@ -1,4 +1,4 @@
-# Projeto do Módulo - Explorando Padrões de Projetos na Pratica com Java e Spring Boot.
+# Projeto do Módulo - Explorando Padrões de Projetos na Prática com Java e Spring Boot.
 
 ## Descrição
 
@@ -25,11 +25,11 @@ implementações de referência que podem ajudá-lo a dominar esse tema!
 
 ## Padrões de Projeto abordados
 
+- **Singleton**: O padrão Singleton é adotado automaticamente pelo Spring Boot para gerenciar beans. Ele garante que apenas uma instância de um bean seja criada e mantida em todo o contexto da aplicação, promovendo o reuso e a eficiência de recursos.
 - **Strategy**: Define uma família de algoritmos, encapsula cada um deles e os torna intercambiáveis. A estratégia permite que o algoritmo varie independentemente dos clientes que o utilizam.
-- **Singleton**: Garante que uma classe tenha apenas uma instância e fornece um ponto de acesso global para ela.
-- **Facade**: Fornece uma interface unificada para um conjunto de interfaces em um subsistema. O Facade define uma interface de nível mais alto que torna o subsistema mais fácil de usar.
-- **DTO**: Objeto de Transferência de Dados (DTO) é um padrão de design que é usado para transferir dados entre subsistemas de um software. DTOs são frequentemente usados em conjunção com objetos de acesso a dados para obter dados de um banco de dados.
-- **Builder**: O padrão Builder é um padrão de design de software que permite a separação da construção de um objeto complexo de sua representação, de modo que o mesmo processo de construção possa criar diferentes representações.
+- **Facade**: O padrão Facade é usado para simplificar a interação com sistemas complexos, oferecendo uma interface simplificada para um conjunto de interfaces em um subsistema. No Spring Boot, pode ser implementado por meio de serviços que agregam lógicas de negócio complexas, tornando-as mais acessíveis e simplificadas para os consumidores.
+- **DTO (Data Transfer Object)**: DTOs são usados no Spring Boot para transferir dados entre diferentes camadas da aplicação, especialmente útil em APIs REST. Eles ajudam a separar a modelagem de domínio da lógica de transferência de dados, simplificando a comunicação e melhorando a segurança dos dados.
+- **Builder**: O padrão Builder é útil no Spring Boot para a criação de objetos complexos, permitindo a construção passo a passo de um objeto e facilitando a leitura do código. É particularmente vantajoso quando um objeto tem múltiplos parâmetros, alguns dos quais podem ser opcionais, promovendo uma inicialização mais clara e segura.
 
 ## Endpoints
 
